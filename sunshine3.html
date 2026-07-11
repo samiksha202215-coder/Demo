@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumière & Luna — Relationship Coaching, NLP &amp; Spiritual Wellness</title>
+<meta name="description" content="Luxury relationship coaching, NLP and emotional wellness for modern women. Heal, connect and transform with Lumière & Luna.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   LUMIÈRE & LUNA — Design tokens
+   ============================================================ */
+:root{
+  --black: #09070F;
+  --midnight: #1A1033;
+  --midnight-2: #241542;
+  --royal: #5F3DC4;
+  --lavender: #B784F7;
+  --gold: #D4AF37;
+  --gold-soft: #E9CE7A;
+  --cream: #F7F3EC;
+
+  --font-head: 'Cinzel', serif;
+  --font-body: 'Poppins', sans-serif;
+  --font-accent: 'Cormorant Garamond', serif;
+
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 10px;
+
+  --ease: cubic-bezier(.22,1,.36,1);
+  --container: min(1200px, 92vw);
+}
+
+*,*::before,*::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *,*::before,*::after{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+body{
+  margin:0;
+  background: var(--black);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; cursor:pointer; }
+ul{ list-style:none; margin:0; padding:0; }
+
+.container{ width: var(--container); margin-inline:auto; }
+.section{ padding: clamp(4rem, 9vw, 8rem) 0; position: relative; }
+
+h1,h2,h3,h4{
+  font-family: var(--font-head);
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 .6em;
+  letter-spacing: .01em;
+}
+h2{ font-size: clamp(1.9rem, 3.4vw, 2.8rem); }
+h3{ font-size: clamp(1.1rem, 1.6vw, 1.35rem); }
+p{ margin: 0 0 1em; color: rgba(247,243,236,.82); }
+
+.eyebrow{
+  font-family: var(--font-accent);
+  font-style: italic;
+  color: var(--gold-soft);
+  letter-spacing: .06em;
+  font-size: clamp(.95rem, 1.4vw, 1.15rem);
+  margin-bottom: .8em;
+}
+.gold-text{ color: var(--gold); }
+.lead-text{ font-family: var(--font-accent); font-size: 1.25rem; color: var(--cream); }
+
+.section-head{ max-width: 720px; margin: 0 auto 3.5rem; text-align:center; }
+.section-intro{ font-size: 1.05rem; }
+
+/* focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn{
+  position: relative;
+  display: inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5em;
+  padding: .95em 2.1em;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: .92rem;
+  letter-spacing: .04em;
+  font-weight: 500;
+  border: 1px solid transparent;
+  overflow:hidden;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
+}
+.btn-gold{
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  color: var(--black);
+  box-shadow: 0 8px 30px -8px rgba(212,175,55,.55);
+}
+.btn-gold:hover{ transform: translateY(-2px); box-shadow: 0 14px 36px -8px rgba(212,175,55,.75); }
+.btn-ghost{
+  background: rgba(247,243,236,.04);
+  border-color: rgba(183,132,247,.55);
+  color: var(--cream);
+  backdrop-filter: blur(6px);
+}
+.btn-ghost:hover{ background: rgba(183,132,247,.14); transform: translateY(-2px); }
+.btn-large{ padding: 1.15em 2.8em; font-size: 1rem; }
+.btn-small{ padding: .6em 1.4em; font-size: .8rem; }
+.full-width{ width:100%; }
+
+.ripple{ position:relative; }
+.ripple .ripple-circle{
+  position:absolute; border-radius:50%; background: rgba(9,7,15,.35);
+  transform: scale(0); animation: ripple .6s ease-out forwards; pointer-events:none;
+}
+@keyframes ripple{ to{ transform: scale(2.6); opacity:0; } }
+
+/* ============================================================
+   Cursor glow
+   ============================================================ */
+.cursor-glow{
+  position: fixed; width: 340px; height:340px; border-radius:50%;
+  background: radial-gradient(circle, rgba(183,132,247,.14), transparent 70%);
+  pointer-events:none; z-index: 2; transform: translate(-50%,-50%);
+  left: -400px; top: -400px; transition: left .12s linear, top .12s linear;
+}
+@media (max-width: 900px){ .cursor-glow{ display:none; } }
+
+/* ============================================================
+   Page loader
+   ============================================================ */
+.page-loader{
+  position: fixed; inset:0; background: var(--black); z-index: 999;
+  display:flex; align-items:center; justify-content:center;
+  transition: opacity .6s var(--ease), visibility .6s var(--ease);
+}
+.page-loader.hidden{ opacity:0; visibility:hidden; }
+.loader-moon{
+  width: 64px; height:64px; fill: var(--gold);
+  filter: drop-shadow(0 0 18px rgba(212,175,55,.7));
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse{ 0%,100%{ transform: scale(.85); opacity:.7; } 50%{ transform: scale(1.05); opacity:1; } }
+
+/* ============================================================
+   Header / Nav
+   ============================================================ */
+.site-header{
+  position: fixed; top:0; left:0; right:0; z-index: 100;
+  padding: 1.4rem 0;
+  transition: background .4s var(--ease), padding .4s var(--ease), box-shadow .4s var(--ease);
+}
+.site-header.scrolled{
+  background: rgba(9,7,15,.78);
+  backdrop-filter: blur(14px);
+  padding: .85rem 0;
+  box-shadow: 0 10px 30px -18px rgba(0,0,0,.6);
+  border-bottom: 1px solid rgba(183,132,247,.15);
+}
+.nav{ display:flex; align-items:center; justify-content:space-between; }
+.logo{ display:flex; align-items:center; gap:.55em; font-family: var(--font-head); font-size: 1.15rem; letter-spacing:.03em; }
+.logo em{ font-style:normal; color: var(--gold); margin: 0 .15em; }
+.logo-glyph{ width: 26px; height:26px; fill:none; stroke: var(--gold); stroke-width:1.4; }
+
+.nav-menu{ display:flex; align-items:center; gap: 2.1rem; }
+.nav-menu a:not(.btn){
+  font-size: .88rem; letter-spacing:.03em; position:relative; padding: .2em 0;
+}
+.nav-menu a:not(.btn)::after{
+  content:''; position:absolute; left:0; right:100%; bottom:-4px; height:1px;
+  background: var(--gold); transition: right .35s var(--ease);
+}
+.nav-menu a:not(.btn):hover::after{ right:0; }
+
+.hamburger{
+  display:none; flex-direction:column; gap:5px; background:none; border:none; padding: .4em;
+}
+.hamburger span{ width:24px; height:2px; background: var(--cream); transition: transform .3s var(--ease), opacity .3s var(--ease); }
+.hamburger.active span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2){ opacity:0; }
+.hamburger.active span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 860px){
+  .hamburger{ display:flex; }
+  .nav-menu{
+    position: fixed; top:0; right:-100%; height:100vh; width: min(78vw, 340px);
+    background: linear-gradient(180deg, var(--midnight), var(--black));
+    flex-direction:column; justify-content:center; align-items:flex-start;
+    padding: 3rem; gap: 1.6rem; transition: right .45s var(--ease);
+    border-left: 1px solid rgba(183,132,247,.2);
+  }
+  .nav-menu.open{ right:0; }
+}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero{
+  position: relative; min-height: 100vh; display:flex; align-items:center;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 75% 20%, rgba(95,61,196,.35), transparent 55%),
+    radial-gradient(ellipse at 15% 85%, rgba(183,132,247,.16), transparent 55%),
+    linear-gradient(180deg, var(--black) 0%, var(--midnight) 100%);
+}
+#starsCanvas{ position:absolute; inset:0; width:100%; height:100%; }
+
+.hero-moon{
+  position:absolute; top: 14%; right: 8%; width: min(38vw, 340px);
+  filter: drop-shadow(0 0 40px rgba(212,175,55,.35));
+  animation: float 7s ease-in-out infinite;
+}
+@keyframes float{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-18px); } }
+
+.hero-content{ position:relative; z-index:3; max-width: 720px; }
+.hero-title{ font-size: clamp(2.6rem, 7vw, 5rem); margin-bottom:.4em; }
+.hero-title span{ display:block; }
+.hero-sub{ font-family: var(--font-accent); font-size: clamp(1.05rem, 1.6vw, 1.4rem); max-width: 46ch; color: rgba(247,243,236,.88); }
+.hero-actions{ display:flex; gap: 1.1rem; margin-top: 1.6rem; flex-wrap:wrap; }
+
+.floating-cards{ position:absolute; inset:0; z-index:2; pointer-events:none; }
+.tarot-card{
+  position:absolute; width: 108px; height: 168px; border-radius: 14px;
+  background: linear-gradient(160deg, rgba(36,21,66,.85), rgba(9,7,15,.9));
+  border: 1px solid rgba(212,175,55,.4);
+  box-shadow: 0 20px 50px -18px rgba(0,0,0,.7), inset 0 0 24px rgba(183,132,247,.12);
+  animation: cardFloat 8s ease-in-out infinite;
+}
+.tarot-inner{
+  height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4em;
+  font-family: var(--font-head); font-size:.72rem; letter-spacing:.06em; text-align:center; color: var(--gold-soft);
+}
+.tarot-inner span{ font-size:1.6rem; color: var(--gold); }
+.card-1{ top: 62%; left: 6%; animation-delay: 0s; transform: rotate(-8deg); }
+.card-2{ top: 18%; left: 44%; animation-delay: 1.4s; transform: rotate(5deg); }
+.card-3{ top: 68%; left: 82%; animation-delay: 2.8s; transform: rotate(10deg); }
+@keyframes cardFloat{ 0%,100%{ transform: translateY(0) rotate(var(--r,0)); } 50%{ transform: translateY(-16px) rotate(var(--r,0)); } }
+@media (max-width: 760px){ .floating-cards{ display:none; } }
+
+.scroll-indicator{
+  position:absolute; bottom: 2.4rem; left:50%; transform: translateX(-50%); z-index:3;
+  width: 26px; height: 42px; border: 1.5px solid rgba(247,243,236,.5); border-radius: 20px;
+}
+.scroll-indicator span{
+  position:absolute; top:6px; left:50%; width:4px; height:8px; margin-left:-2px; border-radius:2px;
+  background: var(--gold); animation: scrollDot 1.8s ease-in-out infinite;
+}
+@keyframes scrollDot{ 0%{ opacity:1; top:6px; } 70%{ opacity:0; top:22px; } 100%{ opacity:0; top:6px; } }
+
+/* ============================================================
+   Reveal animations
+   ============================================================ */
+.reveal{
+  opacity:0; transform: translateY(22px); animation: revealUp .9s var(--ease) forwards;
+  animation-delay: calc(var(--d, 0) * .15s + .2s);
+}
+@keyframes revealUp{ to{ opacity:1; transform: translateY(0); } }
+
+.reveal-on-scroll{ opacity:0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal-on-scroll.in-view{ opacity:1; transform: translateY(0); }
+
+/* ============================================================
+   About
+   ============================================================ */
+.about-grid{ display:grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2.5rem, 6vw, 5rem); align-items:center; }
+.about-portrait{ position:relative; }
+.portrait-frame{ position:relative; border-radius: var(--radius-lg); overflow:hidden; }
+.portrait-frame img{ border-radius: var(--radius-lg); filter: saturate(.92) contrast(1.03); }
+.frame-ornament{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.frame-ornament rect{ fill:none; stroke: var(--gold); stroke-width:1; opacity:.55; }
+.portrait-badge{
+  position:absolute; bottom: -1.4rem; right: -1.2rem; background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  color: var(--black); padding: 1.1rem 1.4rem; border-radius: var(--radius-md); text-align:center;
+  box-shadow: 0 20px 40px -14px rgba(212,175,55,.6);
+}
+.portrait-badge strong{ display:block; font-family: var(--font-head); font-size:1.4rem; }
+.portrait-badge span{ font-size:.72rem; letter-spacing:.04em; }
+
+.mv-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:1.4rem; margin: 2rem 0; }
+.mv-item h3{ color: var(--gold-soft); font-size:1rem; margin-bottom:.4em; }
+.mv-item p{ font-size:.88rem; }
+
+.stats-row{ display:flex; gap: clamp(1.5rem,4vw,3rem); border-top: 1px solid rgba(183,132,247,.2); padding-top: 1.8rem; }
+.stat{ font-family: var(--font-head); }
+.stat-number{ font-size: 2.1rem; color: var(--gold); }
+.stat-suffix{ font-size: 1.1rem; color: var(--gold); }
+.stat p{ font-family: var(--font-body); font-size:.8rem; color: rgba(247,243,236,.7); margin:.2em 0 0; }
+
+@media (max-width: 860px){
+  .about-grid{ grid-template-columns: 1fr; }
+  .mv-grid{ grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   Services
+   ============================================================ */
+.services{ background: linear-gradient(180deg, var(--midnight) 0%, var(--black) 100%); }
+.services-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.6rem; }
+.service-card{
+  position:relative; padding: 2.1rem 1.7rem; border-radius: var(--radius-md);
+  background: linear-gradient(160deg, rgba(36,21,66,.55), rgba(9,7,15,.65));
+  border: 1px solid rgba(183,132,247,.22);
+  transition: transform .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+  overflow:hidden;
+}
+.service-card .card-glow{
+  position:absolute; inset: -40% -40% auto auto; width:60%; height:60%; border-radius:50%;
+  background: radial-gradient(circle, rgba(212,175,55,.28), transparent 70%);
+  opacity:0; transition: opacity .5s var(--ease);
+}
+.service-card:hover{ transform: translateY(-8px); border-color: rgba(212,175,55,.55); box-shadow: 0 26px 50px -22px rgba(95,61,196,.55); }
+.service-card:hover .card-glow{ opacity:1; }
+.service-icon{ display:inline-block; font-size:1.6rem; color: var(--gold); margin-bottom:.6rem; }
+.service-card h3{ margin-bottom:.4em; }
+.service-card p{ font-size:.9rem; }
+.learn-more{ display:inline-block; margin-top:.6rem; font-size:.82rem; color: var(--gold-soft); letter-spacing:.03em; transition: letter-spacing .3s var(--ease); }
+.learn-more:hover{ letter-spacing:.08em; }
+
+/* ============================================================
+   Why choose us
+   ============================================================ */
+.why-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(210px,1fr)); gap: 1.4rem; }
+.why-card{
+  text-align:center; padding: 2.2rem 1.4rem; border-radius: var(--radius-md);
+  background: rgba(247,243,236,.03); border: 1px solid rgba(183,132,247,.15);
+  transition: transform .4s var(--ease), background .4s var(--ease);
+}
+.why-card:hover{ transform: translateY(-6px); background: rgba(183,132,247,.07); }
+.why-icon{ font-size: 1.6rem; color: var(--lavender); display:block; margin-bottom:.6rem; }
+.why-card h3{ font-size:1rem; }
+.why-card p{ font-size:.85rem; }
+
+/* ============================================================
+   Testimonials
+   ============================================================ */
+.testimonials{ background: linear-gradient(180deg, var(--black), var(--midnight)); }
+.testimonial-slider{ position:relative; overflow:hidden; }
+.testimonial-track{ display:flex; transition: transform .6s var(--ease); }
+.testimonial-card{
+  flex: 0 0 100%; max-width: 640px; margin:0 auto; text-align:center;
+  padding: 2.6rem clamp(1.5rem, 5vw, 3rem); border-radius: var(--radius-lg);
+  background: rgba(247,243,236,.05); backdrop-filter: blur(14px);
+  border: 1px solid rgba(212,175,55,.25);
+}
+.stars{ color: var(--gold); letter-spacing:.2em; margin-bottom:.8rem; }
+.testimonial-card p{ font-family: var(--font-accent); font-size:1.2rem; font-style:italic; color: var(--cream); }
+.testimonial-author{ display:flex; align-items:center; justify-content:center; gap:.8rem; margin-top:1.4rem; }
+.testimonial-author img{ width:48px; height:48px; border-radius:50%; object-fit:cover; border:1px solid var(--gold); }
+.testimonial-author div{ text-align:left; font-size:.82rem; }
+.testimonial-author strong{ display:block; font-family: var(--font-head); font-size:.9rem; }
+.testimonial-author span{ color: rgba(247,243,236,.6); }
+.slider-dots{ display:flex; justify-content:center; gap:.5rem; margin-top:1.8rem; }
+.slider-dots button{ width:9px; height:9px; border-radius:50%; border:none; background: rgba(247,243,236,.25); transition: background .3s; }
+.slider-dots button.active{ background: var(--gold); }
+
+/* ============================================================
+   Blog
+   ============================================================ */
+.blog-masonry{ display:grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 220px; gap: 1.4rem; }
+.blog-featured{ grid-column: span 2; grid-row: span 2; }
+.blog-card{
+  position:relative; border-radius: var(--radius-md); overflow:hidden;
+  background: var(--midnight-2); border: 1px solid rgba(183,132,247,.18);
+}
+.blog-img{ position:absolute; inset:0; }
+.blog-img img{ width:100%; height:100%; object-fit:cover; transition: transform .6s var(--ease); }
+.blog-card:hover .blog-img img{ transform: scale(1.08); }
+.blog-body{
+  position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:flex-end;
+  padding: 1.4rem; background: linear-gradient(0deg, rgba(9,7,15,.92), rgba(9,7,15,.1) 60%);
+}
+.blog-tag{ font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color: var(--gold-soft); margin-bottom:.4em; }
+.blog-body h3{ font-size: 1.05rem; margin:0; }
+.blog-featured .blog-body h3{ font-size: clamp(1.2rem, 2vw, 1.6rem); }
+
+@media (max-width: 860px){
+  .blog-masonry{ grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; }
+  .blog-featured{ grid-column: span 2; grid-row: span 1; height: 260px; }
+}
+@media (max-width: 560px){
+  .blog-masonry{ grid-template-columns: 1fr; }
+  .blog-featured{ grid-column: span 1; }
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-container{ max-width: 780px; }
+.accordion-item{ border-bottom: 1px solid rgba(183,132,247,.2); }
+.accordion-trigger{
+  width:100%; display:flex; justify-content:space-between; align-items:center;
+  background:none; border:none; color: var(--cream); font-family: var(--font-head);
+  font-size: 1rem; padding: 1.3rem 0; text-align:left;
+}
+.accordion-icon{ color: var(--gold); font-size:1.3rem; transition: transform .35s var(--ease); }
+.accordion-item.open .accordion-icon{ transform: rotate(45deg); }
+.accordion-panel{ max-height:0; overflow:hidden; transition: max-height .45s var(--ease); }
+.accordion-panel p{ padding-bottom: 1.3rem; font-size:.92rem; }
+
+/* ============================================================
+   Booking CTA
+   ============================================================ */
+.booking{ position:relative; padding: clamp(4.5rem, 10vw, 7rem) 0; text-align:center; overflow:hidden; }
+.booking-bg{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 50% 120%, rgba(212,175,55,.25), transparent 60%),
+    radial-gradient(circle at 20% 0%, rgba(95,61,196,.4), transparent 55%),
+    linear-gradient(180deg, var(--midnight), var(--black));
+}
+.booking-content{ position:relative; z-index:2; max-width: 640px; margin-inline:auto; }
+.booking h2{ font-size: clamp(2rem, 4vw, 3rem); }
+
+/* ============================================================
+   Contact
+   ============================================================ */
+.contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 6vw, 5rem); }
+.map-placeholder{
+  margin-top: 1.6rem; height: 200px; border-radius: var(--radius-md);
+  background: linear-gradient(160deg, rgba(36,21,66,.7), rgba(9,7,15,.8));
+  border: 1px dashed rgba(212,175,55,.4);
+  display:flex; align-items:center; justify-content:center;
+  color: rgba(247,243,236,.6); font-size:.85rem; letter-spacing:.03em;
+}
+.social-icons{ display:flex; gap:1rem; margin-top:1.6rem; }
+.social-icons a{
+  width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  border:1px solid rgba(212,175,55,.4); color: var(--gold-soft); transition: background .3s, transform .3s;
+}
+.social-icons a:hover{ background: rgba(212,175,55,.15); transform: translateY(-3px); }
+
+.contact-form{
+  background: rgba(247,243,236,.04); border: 1px solid rgba(183,132,247,.2);
+  border-radius: var(--radius-lg); padding: clamp(1.6rem, 3vw, 2.4rem);
+  backdrop-filter: blur(10px);
+}
+.form-row{ margin-bottom: 1.3rem; display:flex; flex-direction:column; gap:.5rem; }
+.form-row label{ font-size:.8rem; letter-spacing:.04em; color: var(--gold-soft); }
+.form-row input, .form-row textarea{
+  background: rgba(9,7,15,.6); border: 1px solid rgba(183,132,247,.3); border-radius: var(--radius-sm);
+  padding: .85em 1em; color: var(--cream); font-family: var(--font-body); font-size:.92rem; resize: vertical;
+  transition: border-color .3s;
+}
+.form-row input:focus, .form-row textarea:focus{ border-color: var(--gold); outline:none; }
+.form-status{ text-align:center; margin-top:1rem; font-size:.85rem; color: var(--gold-soft); min-height: 1.2em; }
+
+@media (max-width: 860px){ .contact-grid{ grid-template-columns: 1fr; } }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer{
+  position:relative; background: var(--black); padding: 4.5rem 0 1.6rem; overflow:hidden;
+  border-top: 1px solid rgba(183,132,247,.15);
+}
+.footer-moon{
+  position:absolute; top:-60px; right:-60px; width:220px; fill: none; stroke: var(--royal); stroke-width:1; opacity:.4;
+}
+.footer-grid{ display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.4rem; position:relative; z-index:2; }
+.footer-brand p{ font-size:.85rem; margin-top:.8rem; }
+.footer-links, .footer-newsletter, .footer-instagram{ display:flex; flex-direction:column; gap:.7rem; }
+.footer-links h4, .footer-newsletter h4, .footer-instagram h4{ font-family: var(--font-head); font-size:.9rem; color: var(--gold-soft); margin-bottom:.3rem; }
+.footer-links a{ font-size:.85rem; color: rgba(247,243,236,.75); }
+.footer-links a:hover{ color: var(--gold); }
+.newsletter-form{ display:flex; gap:.5rem; }
+.newsletter-form input{
+  flex:1; padding:.7em .9em; border-radius: 999px; border:1px solid rgba(183,132,247,.3);
+  background: rgba(247,243,236,.05); color: var(--cream); font-size:.82rem;
+}
+.insta-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:.5rem; }
+.insta-grid img{ border-radius:6px; aspect-ratio:1; object-fit:cover; }
+.footer-bottom{ margin-top: 3rem; text-align:center; font-size:.78rem; color: rgba(247,243,236,.5); }
+
+@media (max-width: 860px){ .footer-grid{ grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px){ .footer-grid{ grid-template-columns: 1fr; } }
+
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" aria-hidden="true"></div>
+<div class="page-loader" id="pageLoader" aria-hidden="true">
+  <svg class="loader-moon" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" /></svg>
+</div>
+
+<!-- ================= NAVIGATION ================= -->
+<header class="site-header" id="siteHeader">
+  <nav class="nav container" aria-label="Primary">
+    <a href="#home" class="logo">
+      <svg class="logo-glyph" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2a18 18 0 100 36 14 14 0 010-36z"/></svg>
+      <span>Lumière<em>&amp;</em>Luna</span>
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#booking" class="btn btn-gold btn-small">Book Session</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="home">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <canvas id="starsCanvas" aria-hidden="true"></canvas>
+
+    <svg class="hero-moon" id="heroMoon" viewBox="0 0 200 200" aria-hidden="true">
+      <defs>
+        <mask id="moonMask">
+          <rect x="0" y="0" width="200" height="200" fill="white"/>
+          <circle id="moonShadow" cx="260" cy="100" r="86" fill="black"/>
+        </mask>
+        <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#F7F3EC"/>
+          <stop offset="60%" stop-color="#D4AF37"/>
+          <stop offset="100%" stop-color="#5F3DC4" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="100" cy="100" r="95" fill="url(#moonGlow)" opacity="0.35"/>
+      <circle cx="100" cy="100" r="70" fill="#F7F3EC" mask="url(#moonMask)"/>
+    </svg>
+
+    <div class="hero-content container">
+      <p class="eyebrow reveal">✦ A sanctuary for modern love ✦</p>
+      <h1 class="hero-title">
+        <span class="reveal" style="--d:0">Heal.</span>
+        <span class="reveal" style="--d:1">Connect.</span>
+        <span class="reveal gold-text" style="--d:2">Transform.</span>
+      </h1>
+      <p class="hero-sub reveal" style="--d:3">Relationship Coaching, NLP, Emotional Wellness &amp; Spiritual Growth for Modern Women.</p>
+      <div class="hero-actions reveal" style="--d:4">
+        <a href="#booking" class="btn btn-gold ripple">Book Discovery Call</a>
+        <a href="#services" class="btn btn-ghost ripple">Explore Services</a>
+      </div>
+    </div>
+
+    <div class="floating-cards" aria-hidden="true">
+      <div class="tarot-card card-1"><div class="tarot-inner"><span>☾</span>The High Priestess</div></div>
+      <div class="tarot-card card-2"><div class="tarot-inner"><span>✦</span>The Star</div></div>
+      <div class="tarot-card card-3"><div class="tarot-inner"><span>♡</span>The Lovers</div></div>
+    </div>
+
+    <a href="#about" class="scroll-indicator" aria-label="Scroll to explore">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="about section" id="about">
+    <div class="container about-grid">
+      <div class="about-portrait reveal-on-scroll">
+        <div class="portrait-frame">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=700&q=80" alt="Portrait of the founder, a relationship coach" loading="lazy">
+          <svg class="frame-ornament" viewBox="0 0 300 380" aria-hidden="true">
+            <rect x="4" y="4" width="292" height="372" rx="18" />
+          </svg>
+        </div>
+        <div class="portrait-badge">
+          <strong>11+</strong>
+          <span>Years Guiding Hearts</span>
+        </div>
+      </div>
+
+      <div class="about-copy reveal-on-scroll">
+        <p class="eyebrow">✦ About the Founder ✦</p>
+        <h2>Where psychology meets the mystical.</h2>
+        <p class="lead-text">I founded Lumière &amp; Luna to hold space for women who are ready to stop repeating old patterns — in love, in self-worth, in the stories they tell themselves under a new moon.</p>
+        <p>My work blends evidence-based coaching psychology and NLP with the ancient rhythms of astrology and tarot, so every session speaks to both your mind and your intuition.</p>
+
+        <div class="mv-grid">
+          <div class="mv-item">
+            <h3>Mission</h3>
+            <p>To help modern women build relationships rooted in clarity, self-respect and emotional depth.</p>
+          </div>
+          <div class="mv-item">
+            <h3>Vision</h3>
+            <p>A generation of women who trust their intuition as fluently as their intellect.</p>
+          </div>
+          <div class="mv-item">
+            <h3>Philosophy</h3>
+            <p>Transformation happens when practical tools meet spiritual permission to change.</p>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat" data-target="1200">
+            <span class="stat-number">0</span><span class="stat-suffix">+</span>
+            <p>Women Coached</p>
+          </div>
+          <div class="stat" data-target="11">
+            <span class="stat-number">0</span><span class="stat-suffix">yrs</span>
+            <p>Experience</p>
+          </div>
+          <div class="stat" data-target="98">
+            <span class="stat-number">0</span><span class="stat-suffix">%</span>
+            <p>Client Satisfaction</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="section-head reveal-on-scroll">
+        <p class="eyebrow">✦ Offerings ✦</p>
+        <h2>Sessions written in the stars — grounded in real work.</h2>
+        <p class="section-intro">Every offering pairs a modern coaching method with a ritual touch, so growth feels as sacred as it is practical.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card reveal-on-scroll">
+          <div class="card-glow"></div>
+          <span class="service-icon">♡</span>
+          <h3>Relationship Coaching</h3>
+          <p>One-on-one guidance to break cycles and build secure, aligned partnerships.</p>
+          <a href="#contact" class="learn-more">Learn More →</a>
+        </article>
+
+        <article class="service-card reveal-on-scroll">
+          <div class="card-glow"></div>
+          <span class="service-icon">✦</span>
+          <h3>Dating Confidence</h3>
+          <p>Reclaim your magnetism and dating identity with confidence-building rituals.</p>
+          <a href="#contact" class="learn-more">Learn More →</a>
+        </article>
+
+        <article class="service-card reveal-on-scroll">
+          <div class="card-glow"></div>
+          <span class="service-icon">☾</span>
+          <h3>NLP Coaching</h3>
+          <p>Rewire limiting beliefs at the root using neuro-linguistic programming.</p>
+          <a href="#contact" class="learn-more">Learn More →</a>
+        </article>
+
+        <article class="service-card reveal-on-scroll">
+          <div class="card-glow"></div>
+          <span class="service-icon">⟡</span>
+          <h3>Corporate Wellness</h3>
+          <p>Emotional intelligence workshops that bring calm, connected teams to life.</p>
+          <a href="#contact" class="learn-more">Learn More →</a>
+        </article>
+
+        <article class="service-card reveal-on-scroll">
+          <div class="card-glow"></div>
+          <span class="service-icon">✧</span>
+          <h3>Stress Management</h3>
+          <p>Nervous-system-informed tools to soften anxiety and restore steadiness.</p>
+          <a href="#contact" class="learn-more">Learn More →</a>
+        </article>
+
+        <article class="service-card reveal-on-scroll">
+          <div class="card-glow"></div>
+          <span class="service-icon">☽</span>
+          <h3>Meditation</h3>
+          <p>Guided moon-cycle meditations to deepen intuition and inner stillness.</p>
+          <a href="#contact" class="learn-more">Learn More →</a>
+        </article>
+
+        <article class="service-card reveal-on-scroll">
+          <div class="card-glow"></div>
+          <span class="service-icon">☯</span>
+          <h3>Yoga</h3>
+          <p>Gentle, intentional movement to reconnect body, breath and emotion.</p>
+          <a href="#contact" class="learn-more">Learn More →</a>
+        </article>
+
+        <article class="service-card reveal-on-scroll">
+          <div class="card-glow"></div>
+          <span class="service-icon">✶</span>
+          <h3>Emotional Intelligence</h3>
+          <p>Practical frameworks to name, feel and communicate emotion with grace.</p>
+          <a href="#contact" class="learn-more">Learn More →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHY CHOOSE US ================= -->
+  <section class="why section" id="why">
+    <div class="container">
+      <div class="section-head reveal-on-scroll">
+        <p class="eyebrow">✦ Why Lumière &amp; Luna ✦</p>
+        <h2>A practice built on trust, not trends.</h2>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal-on-scroll">
+          <span class="why-icon">◈</span>
+          <h3>Personalized Coaching</h3>
+          <p>No templates — every plan is built around your chart, your history, your goals.</p>
+        </div>
+        <div class="why-card reveal-on-scroll">
+          <span class="why-icon">◆</span>
+          <h3>Evidence-Based Techniques</h3>
+          <p>Rooted in coaching psychology and NLP, not guesswork.</p>
+        </div>
+        <div class="why-card reveal-on-scroll">
+          <span class="why-icon">✦</span>
+          <h3>Spiritual Guidance</h3>
+          <p>Tarot and astrology woven in as tools for reflection, not fortune-telling.</p>
+        </div>
+        <div class="why-card reveal-on-scroll">
+          <span class="why-icon">◇</span>
+          <h3>Confidential Sessions</h3>
+          <p>A private, judgment-free space held to the highest ethical standard.</p>
+        </div>
+        <div class="why-card reveal-on-scroll">
+          <span class="why-icon">✧</span>
+          <h3>Long-Term Transformation</h3>
+          <p>We work for the pattern shift, not just the quick fix.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <div class="section-head reveal-on-scroll">
+        <p class="eyebrow">✦ Client Stories ✦</p>
+        <h2>Transformations, in their own words.</h2>
+      </div>
+
+      <div class="testimonial-slider">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"I finally understand why I kept choosing the same relationship in different bodies. This work changed everything."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=120&q=80" alt="Client Amara R." loading="lazy">
+              <div><strong>Amara R.</strong><span>NLP &amp; Relationship Coaching</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"The moon-cycle meditations alone were worth it. I sleep better and I fight less with my partner."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&q=80" alt="Client Priya K." loading="lazy">
+              <div><strong>Priya K.</strong><span>Meditation &amp; Wellness</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"Dating confidence coaching gave me language for boundaries I didn't know I was allowed to set."</p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=120&q=80" alt="Client Sofia M." loading="lazy">
+              <div><strong>Sofia M.</strong><span>Dating Confidence</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BLOG ================= -->
+  <section class="blog section" id="blog">
+    <div class="container">
+      <div class="section-head reveal-on-scroll">
+        <p class="eyebrow">✦ From the Journal ✦</p>
+        <h2>Notes on love, healing &amp; the lunar calendar.</h2>
+      </div>
+
+      <div class="blog-masonry">
+        <article class="blog-card blog-featured reveal-on-scroll">
+          <div class="blog-img"><img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=900&q=80" alt="Full moon over calm water" loading="lazy"></div>
+          <div class="blog-body">
+            <span class="blog-tag">Astrology</span>
+            <h3>Working With Your Venus Sign in Modern Dating</h3>
+            <p>What your Venus placement actually says about how you give and receive love.</p>
+          </div>
+        </article>
+        <article class="blog-card reveal-on-scroll">
+          <div class="blog-img"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&q=80" alt="Tarot cards on a table" loading="lazy"></div>
+          <div class="blog-body">
+            <span class="blog-tag">Tarot</span>
+            <h3>3 Spreads for Relationship Clarity</h3>
+          </div>
+        </article>
+        <article class="blog-card reveal-on-scroll">
+          <div class="blog-img"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Person journaling at sunrise" loading="lazy"></div>
+          <div class="blog-body">
+            <span class="blog-tag">NLP</span>
+            <h3>Rewriting the Story You Tell About Love</h3>
+          </div>
+        </article>
+        <article class="blog-card reveal-on-scroll">
+          <div class="blog-img"><img src="https://images.unsplash.com/photo-1447452001602-7090c7ab2db3?w=600&q=80" alt="Night sky full of stars" loading="lazy"></div>
+          <div class="blog-body">
+            <span class="blog-tag">Wellness</span>
+            <h3>A New Moon Ritual for Releasing Old Patterns</h3>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="faq section" id="faq">
+    <div class="container faq-container">
+      <div class="section-head reveal-on-scroll">
+        <p class="eyebrow">✦ Questions ✦</p>
+        <h2>Before you book.</h2>
+      </div>
+
+      <div class="accordion reveal-on-scroll">
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            What happens in a discovery call?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>A free 20-minute conversation to understand where you are, where you want to be, and which offering fits best. No pressure, no obligation.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            Do I need to know astrology or tarot already?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Not at all. These tools are woven in gently as reflection aids — the coaching itself stands on its own.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            Are sessions online or in person?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Sessions are held over video worldwide, with select in-person retreats offered seasonally.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            How many sessions will I need?
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-panel">
+            <p>Most clients begin with a 6-session container, though this is tailored to your goals during the discovery call.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BOOKING CTA ================= -->
+  <section class="booking" id="booking">
+    <div class="booking-bg" aria-hidden="true"></div>
+    <div class="container booking-content reveal-on-scroll">
+      <p class="eyebrow">✦ Your next chapter begins under this moon ✦</p>
+      <h2>Ready to heal, connect, and transform?</h2>
+      <p class="section-intro">Book a complimentary discovery call and let's map your path together.</p>
+      <a href="#contact" class="btn btn-gold btn-large ripple">Book Discovery Call</a>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="contact section" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-copy reveal-on-scroll">
+        <p class="eyebrow">✦ Get in Touch ✦</p>
+        <h2>Let's begin the conversation.</h2>
+        <p>Whatever brought you here — a breakup, a pattern, a quiet feeling that something needs to shift — reach out. I read every message.</p>
+
+        <div class="contact-map" aria-label="Map placeholder">
+          <div class="map-placeholder">
+            <span>◈ Studio Location — Map Preview</span>
+          </div>
+        </div>
+
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram">◐</a>
+          <a href="#" aria-label="Pinterest">◑</a>
+          <a href="#" aria-label="TikTok">◒</a>
+          <a href="#" aria-label="Email">◓</a>
+        </div>
+      </div>
+
+      <form class="contact-form reveal-on-scroll" id="contactForm">
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required placeholder="Your full name">
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com">
+        </div>
+        <div class="form-row">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="Optional">
+        </div>
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" required placeholder="Tell me a little about what brings you here..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold btn-large ripple full-width">Send Message</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <svg class="footer-moon" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="80"/></svg>
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="#home" class="logo">
+        <svg class="logo-glyph" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2a18 18 0 100 36 14 14 0 010-36z"/></svg>
+        <span>Lumière<em>&amp;</em>Luna</span>
+      </a>
+      <p>Relationship coaching &amp; spiritual wellness for modern women.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <div class="footer-newsletter">
+      <h4>Newsletter</h4>
+      <p>Moon-phase insights &amp; love notes, monthly.</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Your email" required aria-label="Email for newsletter">
+        <button type="submit" class="btn btn-gold btn-small">Join</button>
+      </form>
+    </div>
+
+    <div class="footer-instagram">
+      <h4>@lumiereandluna</h4>
+      <div class="insta-grid">
+        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=200&q=70" alt="Instagram preview" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?w=200&q=70" alt="Instagram preview" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=200&q=70" alt="Instagram preview" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1517816428104-797678c7cf0c?w=200&q=70" alt="Instagram preview" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1441057206919-63d19fac2369?w=200&q=70" alt="Instagram preview" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=200&q=70" alt="Instagram preview" loading="lazy">
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <p>&copy; <span id="year"></span> Lumière &amp; Luna. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// LUMIÈRE & LUNA — interactions
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------- Page loader ---------- */
+  const loader = document.getElementById('pageLoader');
+  window.addEventListener('load', () => {
+    setTimeout(() => loader.classList.add('hidden'), 400);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- Sticky header ---------- */
+  const header = document.getElementById('siteHeader');
+  const onScrollHeader = () => header.classList.toggle('scrolled', window.scrollY > 40);
+  document.addEventListener('scroll', onScrollHeader, { passive: true });
+  onScrollHeader();
+
+  /* ---------- Hamburger menu ---------- */
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    hamburger.classList.toggle('active', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+  navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navMenu.classList.remove('open');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }));
+
+  /* ---------- Cursor glow ---------- */
+  const glow = document.querySelector('.cursor-glow');
+  if (glow && window.matchMedia('(hover:hover)').matches) {
+    document.addEventListener('mousemove', e => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+  }
+
+  /* ---------- Ripple effect on buttons ---------- */
+  document.querySelectorAll('.ripple').forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      const rect = this.getBoundingClientRect();
+      const circle = document.createElement('span');
+      const size = Math.max(rect.width, rect.height);
+      circle.className = 'ripple-circle';
+      circle.style.width = circle.style.height = size + 'px';
+      circle.style.left = (e.clientX - rect.left - size / 2) + 'px';
+      circle.style.top = (e.clientY - rect.top - size / 2) + 'px';
+      this.appendChild(circle);
+      setTimeout(() => circle.remove(), 650);
+    });
+  });
+
+  /* ---------- Scroll reveal ---------- */
+  const revealItems = document.querySelectorAll('.reveal-on-scroll');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealItems.forEach(el => io.observe(el));
+
+  /* ---------- Animated stats counter ---------- */
+  const stats = document.querySelectorAll('.stat');
+  const statIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      const numEl = el.querySelector('.stat-number');
+      let current = 0;
+      const duration = 1400;
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        current = Math.floor(progress * target);
+        numEl.textContent = current;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      statIO.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  stats.forEach(s => statIO.observe(s));
+
+  /* ---------- Testimonial slider ---------- */
+  const track = document.getElementById('testimonialTrack');
+  const dotsWrap = document.getElementById('sliderDots');
+  const slides = track.children.length;
+  let current = 0;
+  for (let i = 0; i < slides; i++) {
+    const dot = document.createElement('button');
+    dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsWrap.appendChild(dot);
+  }
+  function goToSlide(i) {
+    current = i;
+    track.style.transform = `translateX(-${i * 100}%)`;
+    [...dotsWrap.children].forEach((d, idx) => d.classList.toggle('active', idx === i));
+  }
+  let sliderInterval = setInterval(() => goToSlide((current + 1) % slides), 6000);
+  track.parentElement.addEventListener('mouseenter', () => clearInterval(sliderInterval));
+  track.parentElement.addEventListener('mouseleave', () => {
+    sliderInterval = setInterval(() => goToSlide((current + 1) % slides), 6000);
+  });
+
+  /* ---------- Accordion ---------- */
+  document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('.accordion-item');
+      const panel = item.querySelector('.accordion-panel');
+      const isOpen = item.classList.contains('open');
+
+      document.querySelectorAll('.accordion-item.open').forEach(openItem => {
+        if (openItem !== item) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.accordion-panel').style.maxHeight = null;
+        }
+      });
+
+      if (isOpen) {
+        item.classList.remove('open');
+        panel.style.maxHeight = null;
+      } else {
+        item.classList.add('open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      }
+    });
+  });
+
+  /* ---------- Contact form (demo submission) ---------- */
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    formStatus.textContent = '✦ Thank you — your message has been sent. I\'ll be in touch soon.';
+    contactForm.reset();
+  });
+
+  const newsletterForm = document.getElementById('newsletterForm');
+  newsletterForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = newsletterForm.querySelector('input');
+    input.value = '';
+    input.placeholder = 'Welcome to the circle ✦';
+  });
+
+  /* ---------- Signature element: living moon phase tied to scroll ---------- */
+  const moonShadow = document.getElementById('moonShadow');
+  if (moonShadow) {
+    const heroSection = document.querySelector('.hero');
+    const updateMoonPhase = () => {
+      const rect = heroSection.getBoundingClientRect();
+      const progress = Math.min(Math.max(-rect.top / (rect.height * 0.9), 0), 1);
+      // shadow travels from fully covering (new moon, cx=260) to fully revealing (full moon, cx=100) and beyond (waning, cx=-60)
+      const cx = 260 - progress * 320;
+      moonShadow.setAttribute('cx', cx.toFixed(1));
+    };
+    document.addEventListener('scroll', updateMoonPhase, { passive: true });
+    updateMoonPhase();
+  }
+
+  /* ---------- Starfield canvas ---------- */
+  const canvas = document.getElementById('starsCanvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    let w, h;
+
+    function resize() {
+      w = canvas.width = canvas.offsetWidth;
+      h = canvas.height = canvas.offsetHeight;
+      const count = Math.floor((w * h) / 9000);
+      stars = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.4 + 0.3,
+        speed: Math.random() * 0.015 + 0.003,
+        phase: Math.random() * Math.PI * 2
+      }));
+    }
+
+    function draw(time) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#F7F3EC';
+      stars.forEach(s => {
+        const twinkle = 0.5 + 0.5 * Math.sin(time * s.speed + s.phase);
+        ctx.globalAlpha = 0.15 + twinkle * 0.75;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    requestAnimationFrame(draw);
+  }
+
+});
+
+</script>
+</body>
+</html>
